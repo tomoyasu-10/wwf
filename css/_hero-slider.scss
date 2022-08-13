@@ -1,0 +1,113 @@
+
+.swiper {
+    overflow: visible !important;
+}
+
+.swiper-slide {
+    height: 500px;
+    overflow: hidden;
+
+    & > img {
+        width: 100%;
+        height: 100%;
+        max-width: 100%;
+        object-fit: cover;
+        transform: scale(1.5);
+        transition: transform 3s ease;
+    }
+
+    &-active {
+      & > img {
+        transform: none;
+      }
+
+      & .hero__title {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+      }
+    }
+}
+
+.hero {
+  overflow: hidden;
+  &__title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, calc(-50% + 20px));
+    color: $cWhite;
+    font-size: clamp(25px, 2.5vw, 5vw);
+    font-family: 'Georgia', 'Times New Roman', Times, serif;
+    opacity: 0;
+    transition: opacity .3s ease 1.5s, transform .3s ease 1.5s;
+    white-space: nowrap;
+  }
+
+  &__footer {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, -40%);
+    z-index: 2;
+    width: 22px;
+    height: 100px;
+    overflow: hidden;
+  }
+
+  &__downarrow {
+    position: absolute;
+    left: 0;
+    bottom: 20px;
+    width: 7px;
+    color: $cWhite;
+
+    @include animation (
+        $name: arrow-anime, 
+        $iteration-count: infinite, 
+        $duration: 2s, 
+        $timing-function: linear
+        );
+  }
+
+  &__scrolltext {
+    position: absolute;
+    left: -10px;
+    top: 10px;
+    transform: rotate(90deg);
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.2rem;
+  }
+}
+
+@keyframes arrow-anime {
+    0%,
+    50%,
+    100% {
+        transform: translateY(-10%);
+    }
+    30% {
+        transform: none;
+    }
+}
+
+@media (max-width:375px) {
+  .hero {
+    &__title {
+      font-size: 20px;
+    }
+
+    &__footer {
+      left: 50%;
+      transform: translate(-50%, -25%);
+    }
+
+    &__scrolltext {
+      top: 27px;
+      font-size: 0.9rem;
+    }
+
+    &__downarrow {
+      width: 5px;
+    }
+}
+}

@@ -1,0 +1,11 @@
+ul {
+  margin-top: 150px;
+
+  & > li {
+    list-style: none;
+  }
+}
+
+.slick-slide {
+    margin: 0 100px;
+}
